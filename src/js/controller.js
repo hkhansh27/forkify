@@ -5,12 +5,10 @@ import resultView from './views/resultView';
 
 import 'core-js/stable';
 import 'regenerator-runtime';
+import paginationView from './views/paginationView';
 
 ///////////////////////////////////////
-//hot module replacement in Parcel
-if (module.hot) {
-  module.hot.accept();
-}
+
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -36,14 +34,27 @@ const controlSearchResult = async function () {
 
     //2.Load search recipes
     await model.loadSearchResult(query);
+
     //3.Render result
-    resultView.render(model.state.search.result);
+    resultView.render(model.getSearchResultsPage());
+
+    //4.Render initial pagination btns
+    paginationView.render(model.state.search);
   } catch (error) {
     throw error;
   }
 };
 
+const controlPagination = function (toPage = 1) {
+  //1.Render result
+  resultView.render(model.getSearchResultsPage(toPage));
+
+  //2.Render initial pagination btns
+  paginationView.render(model.state.search);
+};
+
 (function () {
   recipeView.addHandler(controlRecipes);
   searchView.addHandlerSearch(controlSearchResult);
+  paginationView.addHandlerClick(controlPagination);
 })();
