@@ -1,3 +1,0 @@
-exports const state = {
-  recipe: {}
-}
