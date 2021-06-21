@@ -1,5 +1,6 @@
 import icons from 'url:../../img/icons.svg';
 import View from './View';
+import previewView from './previewView';
 
 class ResultView extends View {
   _parentEl = document.querySelector('.results');
@@ -12,22 +13,7 @@ class ResultView extends View {
   //   });
   // }
   _generateMarkup() {
-    return this._data.map(this._generateMarkupPreview).join('');
-  }
-  _generateMarkupPreview(rec) {
-    return `
-    <li class="preview">
-      <a class="preview__link preview__link" href="#${rec.id}">
-        <figure class="preview__fig">
-          <img src="${rec.image}" alt="${rec.title}" />
-        </figure>
-        <div class="preview__data">
-          <h4 class="preview__title">${rec.title}</h4>
-          <p class="preview__publisher">${rec.publisher}</p>
-        </div>
-      </a>
-    </li>
-    `;
+    return this._data.map(result => previewView.render(result, false)).join('');
   }
 }
 
