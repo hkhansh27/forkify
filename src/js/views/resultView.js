@@ -7,11 +7,6 @@ class ResultView extends View {
   _errorMessage = 'No recipies found for your query. Please try again!';
   _successMessage = '';
 
-  // addHandler(handler) {
-  //   ['hashchange', 'load'].forEach(event => {
-  //     window.addEventListener(event, handler);
-  //   });
-  // }
   _generateMarkup() {
     return this._data.map(result => previewView.render(result, false)).join('');
   }

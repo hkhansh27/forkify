@@ -25,12 +25,12 @@ class RecipeView extends View {
     });
   }
 
-  addHandlerAddBookmark(handler) {
+  addHandlerAddBookmark(renderRecipes, persistBookmarks) {
     this._parentEl.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--bookmark');
       if (!btn) return;
 
-      handler();
+      renderRecipes();
     });
   }
 

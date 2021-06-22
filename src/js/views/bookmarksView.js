@@ -7,11 +7,9 @@ class BookmarksView extends View {
   _errorMessage = 'No bookmark yet. Find a nice recipe and bookmark it!';
   _successMessage = '';
 
-  // addHandler(handler) {
-  //   ['hashchange', 'load'].forEach(event => {
-  //     window.addEventListener(event, handler);
-  //   });
-  // }
+  addHandlerRender(handler) {
+    window.addEventListener('load', handler);
+  }
   _generateMarkup() {
     return this._data
       .map(bookmark => previewView.render(bookmark, false))
