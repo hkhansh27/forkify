@@ -1,3 +1,4 @@
+import { async } from 'regenerator-runtime';
 import { TIMEOUT, TIMEOUT_SEC } from './config';
 
 const timeout = function (s) {
@@ -8,12 +9,22 @@ const timeout = function (s) {
   });
 };
 
-export const getJSON = async function (url) {
+export const AJAX = async function (url, payload = undefined) {
   try {
-    const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
-    // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bce33'
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    const fetchPro = payload
+      ? fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+      : fetch(url);
+    const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
     const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
     return data;
   } catch (error) {
     throw error;

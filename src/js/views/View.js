@@ -75,7 +75,7 @@ export default class View {
 
   renderSuccess(message = this._successMessage) {
     const markup = `
-    <div class="success">
+    <div class="error success">
       <div>
         <svg>
           <use href="${icons}#icon-smile"></use>
