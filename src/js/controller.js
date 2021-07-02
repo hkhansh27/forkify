@@ -11,8 +11,6 @@ import 'core-js/stable';
 import 'regenerator-runtime';
 import { async } from 'regenerator-runtime';
 
-///////////////////////////////////////
-
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
