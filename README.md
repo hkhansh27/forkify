@@ -1,3 +1,3 @@
 ### FORKIFY PROJECT
 
-*Recipe application with custom recipe uploads.*
+_Recipe application with custom recipe uploads._
